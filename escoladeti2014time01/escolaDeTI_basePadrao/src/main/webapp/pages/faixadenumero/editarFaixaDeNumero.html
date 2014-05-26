@@ -1,0 +1,38 @@
+<div ng-controller="FaixaDeNumeroController" ng-init="initEditarFaixaDeNumero()">
+    <form>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="idFaixaDeNumero">Numero Inicial:</label>
+                <input type="number" class="form-control" placeholder="Ex: 1" ng-model="faixaDeNumeroAtual.numeroInicial"/>
+                <br/>
+                <label for="idFaixaDeNumero">Numero Final:</label>
+                <input type="number" class="form-control" placeholder="Ex: 10" ng-model="faixaDeNumeroAtual.numeroFinal"/>
+                <br/>
+                <label for="idFaixaDeNumero">CEP:</label>
+                <input type="text" class="form-control" placeholder="87040620" ng-model="faixaDeNumeroAtual.cep"/>
+                <br/>
+                <label>Bairros</label>
+                <select class="form-control"
+                        ng-init="loadAllBairros()"
+                        ng-model="faixaDeNumeroAtual.bairro"
+                        ng-options="bairro.tipo+' '+bairro.nome for bairro in bairros track by bairro.id">
+                </select>
+                <br/>
+                <label>Logradouros</label>
+                <select class="form-control"
+                        ng-init="loadAllLogradouros()"
+                        ng-model="faixaDeNumeroAtual.logradouro"
+                        ng-options="logradouro.tipo+' '+logradouro.nome for logradouro in logradouros track by logradouro.id">
+                </select>
+            </div>
+            <div class="row pull-right">
+                <div class="form-group col-lg-12 col-sm-12">
+                    <button class="btn btn-success" ng-click="salvar()">
+                        <i class="glyphicon glyphicon-ok"></i> Salvar
+                    </button>
+                    <a href="#/cadastros/faixadenumero/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

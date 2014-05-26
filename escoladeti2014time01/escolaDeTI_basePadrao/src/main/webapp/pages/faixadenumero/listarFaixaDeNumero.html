@@ -1,0 +1,72 @@
+<div class="row" ng-controller="FaixaDeNumeroController" ng-init="init()">
+	<div class="table-responsive tabela">
+		<table class="table table-hover" id="tableList">
+			<thead>
+				<tr>
+					<th colspan="2">
+						<div class="form-group col-lg-12 col-sm-12">
+							<button class="btn btn-success" ng-click="incluir()">Novo</button>
+						</div>
+					</th>
+				</tr>
+				
+				<tr>
+					<th class="col-md-4">Número Inicial</th>
+					<th class="col-md-4">Número Final</th>
+					<th class="col-md-4">CEP</th>
+					<th class="col-md-4">Bairro</th>
+					<th class="col-md-4">Logradouro</th>
+					<th class="col-md-4 text-right"></th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="faixaDeNumero in page.list">
+				<tr>
+					<td>{{faixaDeNumero.numeroInicial}}</td>
+					<td>{{faixaDeNumero.numeroFinal}}</td>
+					<td>{{faixaDeNumero.cep}}</td>
+					<td><div ng-repeat="bairro in faixaDeNumero.bairros">{{faixaDeNumero.bairro}}</div></td>
+					<td><div ng-repeat="logradouro in faixaDeNumero.logradouros">{{faixaDeNumero.logradouro}}</div></td>
+					<td class="text-right">
+						<a href="#/cadastros/logradouro/editar/{{faixaDeNumero.id}}" class="btn btn-link btn-success" title="Editar">
+							<span class="glyphicon glyphicon-pencil" />
+						</a>
+						<button type="button" class="btn btn-link btn-danger" title="Excluir" ng:click="remover($index)">
+							<span class="glyphicon glyphicon-trash" />
+						</button>
+					</td>
+				</tr>
+			</tbody>
+			<tr>
+					<th colspan="2">
+						<ul class="pagination">
+							<li class="{{page.pageNumber == 1 ? 'disabled' : ''}}">
+								<a ng-click="loadFaixas(1)">
+									<span class="glyphicon glyphicon-fast-backward"/>
+								</a>
+							</li>
+							<li class="{{page.pageNumber == 1 ? 'disabled' : ''}}">
+								<a ng-click="loadFaixas(page.pageNumber - 1)">
+									<span class="glyphicon glyphicon-step-backward"/>
+								</a>
+							</li>
+							
+							<li ng-repeat="numeroPagina in page.pagesAround" class="{{numeroPagina == page.pageNumber ? 'active' : ''}}">
+								<a ng-click="loadFaixas(numeroPagina)">{{numeroPagina}}</a>
+							</li>
+							
+							<li class="{{page.pageNumber == page.pageCount ? 'disabled' : ''}}">
+								<a ng-click="loadFaixas(page.pageNumber + 1)">
+									<span class="glyphicon glyphicon-step-forward"/>
+								</a>
+							</li>
+							<li class="{{page.pageNumber == page.pageCount ? 'disabled' : ''}}">
+								<a ng-click="loadFaixas(page.pageCount)">
+									<span class="glyphicon glyphicon-fast-forward"/>
+								</a>
+							</li>
+						</ul>
+					</th>
+				</tr>
+		</table>
+	</div>
+</div>

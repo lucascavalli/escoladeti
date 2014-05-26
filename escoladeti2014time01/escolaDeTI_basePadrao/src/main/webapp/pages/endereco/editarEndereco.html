@@ -1,0 +1,38 @@
+<div ng-controller="EnderecoController" ng-init="initEditarEndereco()">
+    <form>
+        <div class="row">
+            <div class="form-group col-md-12">
+                
+                <label for="idEndereco">Cidade</label>
+                <input type="text" class="form-control" placeholder="Cidade do endereço(numero)" ng-model="enderecoAtual.cidade"/>
+                <br/>
+                <label for="idEndereco">Uf</label>
+                <input type="text" class="form-control" placeholder="Uf do enderecço(numero)" ng-model="enderecoAtual.uf"/>
+                <br/>
+                <label for="idEndereco">Pais</label>
+                <input type="text" class="form-control" placeholder="Pais do endereço(numero)" ng-model="enderecoAtual.pais"/>
+                <br/>
+                <label for="idEndereco">Logradouro</label>
+                <input type="text" class="form-control" placeholder="Logradouro do endereço(numero)" ng-model="enderecoAtual.logradouro"/>
+                <br/>
+                <label for="idEndereco">Bairro</label>
+                <input type="text" class="form-control" placeholder="Bairro do endereço(numero)" ng-model="enderecoAtual.bairro"/>
+                <br/>
+                <label for="idEndereco">Cep</label>
+                <input type="text" class="form-control" placeholder="Cep do endereço" ng-model="enderecoAtual.cep"/>
+                <br/>
+                <label for="idEndereco">Numero</label>
+                <input type="text" class="form-control" placeholder="Numero do endereço" ng-model="enderecoAtual.numero"/>
+          
+            </div>
+            <div class="row pull-right">
+                <div class="form-group col-lg-12 col-sm-12">
+                    <button class="btn btn-success" ng-click="salvar()">
+                        <i class="glyphicon glyphicon-ok"></i> Salvar
+                    </button>
+                    <a href="#/cadastros/endereco/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
