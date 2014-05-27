@@ -1,0 +1,41 @@
+<div ng-controller="PaisController" ng-init="initEditarPais()">
+    <form>
+        <div class="row">
+            <div class="form-group col-md-13">
+                
+                 <div class="form-group col-md-12">
+                    <label for="idPais">Nome</label>
+                    <input type="text" class="form-control" placeholder="Digite o Nome do País" ng-model="paisAtual.nome"/>
+                 </div>
+            </div>
+            <div class="form-group col-md-13">
+            
+                <div class="form-group col-md-2">
+                
+                <label for="idSigla">Sigla</label>
+                <input type="text" class="form-control" placeholder="Digite Sigla" ng-model="paisAtual.sigla"/>
+                
+                <label for="idIBGEPais">Codigo IBGE</label>
+                <input type="text" class="form-control" placeholder="Digite IBGE" ng-model="paisAtual.codigoIbge"/>
+                 
+                 </div>
+                 </div>
+                 </div>
+        
+                </form>                
+    
+                 <div class="row pull-right ">
+                    <div class="form-group col-lg-12 col-sm-12">
+                        <button class="btn btn-success" ng-click="salvar()">
+                            <i class="glyphicon glyphicon-ok"></i> Salvar
+                        </button>
+                        <a href="#/cadastros/pais/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                    </div>
+                </div>
+            <br>
+            <div>
+                <footer>
+                    <p>© Escola de TI 2014 - Time 01</p>
+                </footer>
+            </div>
+</div>

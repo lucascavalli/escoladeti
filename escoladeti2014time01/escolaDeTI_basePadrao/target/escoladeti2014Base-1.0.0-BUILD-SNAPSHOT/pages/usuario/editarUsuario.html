@@ -1,0 +1,138 @@
+<div ng-controller="UsuarioController" ng-init="initEditarUsuario()">
+    <div class="container">
+        <form name="usuarioform">
+            <br>
+            <br>
+            
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="idUsuario"> Usuario </label>
+                    <input id="usuario" type="text" class="form-control" ng-model="usuarioAtual.login" required name="usuario" />
+                    <span class="help-inline text-error" ng-show="form.usuario.$dirty && form.usuario.$invalid">Campo obrigatório</span>
+                    
+
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="idUsuario">Senha</label>
+                    <input name="senha" type="password" class="form-control" ng-model="usuarioAtual.senha" id="senha" required />
+                    <span class="help-inline text-error" ng-show="form.senha.$dirty && form.senha.$invalid">Campo obrigatório</span>
+                </div>
+
+                <!-- <div class="form-group col-sm-6">
+     <label>Email</label>
+     <input name="Email" required type="text" ng-model="usuarioAtual.email" id="" class="form-control" >
+     <span class="help-inline text-error" ng-show="form.Email.$dirty && form.Email.$invalid">Campo obrigatório</span>
+ </div>
+</div>
+
+                <!--
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>Pergunta Secreta</label>
+                        <input  name="PerguntaSecreta" required  type="text" ng-model="usuarioAtual.PerguntaSecreta"   id="PerguntaSecreta" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Resposta Secreta</label>
+                        <input  name="RespostaSecreta" required  type="text" ng-model="usuarioAtual.RespostaSecreta"   id="RespostaSecreta" class="form-control">
+                    </div>
+                </div>-->
+
+                <!-- COLOCAR RADIO ATIVO INATIVO -->
+
+                <div class="row">
+                    <div class="btn-group">
+                        <label for="idUsuario">Status</label><br>
+                        <label for="idUsuario" class="btn btn-default radio-inline">
+                            <input type="radio" ng-model="usuarioAtual.ativo"  value="true"> Ativo </label>
+                        <label for="idUsuario" class="btn btn-default radio-inline"> 
+                            <input type="radio" ng-model="usuarioAtual.inativo"  value="false">  Inativo </label>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+
+                <div class="row pull-right">
+                    <div class="form-group col-lg-12 col-sm-12">
+                        <button class="btn btn-success" ng-click="salvar()">
+                            <i class="glyphicon glyphicon-ok"></i> Salvar
+                        </button>
+                        <a href="#/cadastros/usuario/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                    </div>
+                </div>   
+            </div>
+
+
+            <br>
+            <div>
+                <footer>
+                    <p>© Escola de TI 2014 - Time 01</p>
+                </footer>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!--
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <b> Permissões </b>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="driving-license-kind">
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="chkAll" onclick="checkAll(this)" value=""> <b> Financeiro </b>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Cadastrar cliente
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Gerar bolero 
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Contas a pagar
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Contas a receber
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Admissão
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <input type="checkbox" value="">Admissão
+                                        </div>
+
+                                        <label class="checkbox inline">
+                                            <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->

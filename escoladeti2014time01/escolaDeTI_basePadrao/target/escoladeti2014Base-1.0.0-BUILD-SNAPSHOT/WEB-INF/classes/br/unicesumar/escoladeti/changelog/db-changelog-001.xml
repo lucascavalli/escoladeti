@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="arthur">
+		<createTable tableName="USUARIO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_usuario" />
+			</column>
+			<column name="LOGIN" type="${descricaolonga}">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="SENHA" type="${descricaolonga}">
+				<constraints nullable="true" />
+			</column>
+			<column name="ATIVO" type="${logico}">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="2" author="arthur">
+		<sql>${CREATE_HIBERNATE_SEQUENCE}</sql>
+	</changeSet>
+	<changeSet id="3" author="arthur">
+		<createTable tableName="QUESTAO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_questao"/>
+			</column>
+			<column name="ENUNCIADO" type="${descricaolonga}">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uc_enun_questao"/>
+			</column>
+			<column name="NIVELDIFICULDADE" type="${inteiromenor}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="TIPO" type="${descricaocurta}"/>
+		</createTable>
+	</changeSet>
+	<changeSet id="4" author="arthur">
+		<createTable tableName="DISCIPLINA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_disciplina"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uc_nome_disc"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="5" author="arthur">
+		<createTable tableName="QUESTAODISCIPLINA">
+			<column name="QUESTAO_ID" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="fk_quest_disc" referencedColumnNames="ID" referencedTableName="QUESTAO"/>
+			</column>
+			<column name="DISCIPLINA_ID" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="fk_disc_quest" referencedColumnNames="ID" referencedTableName="DISCIPLINA"/>
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="QUESTAODISCIPLINA" columnNames="QUESTAO_ID, DISCIPLINA_ID" constraintName="pk_questao_disciplina"/>
+	</changeSet>
+	<changeSet id="6" author="arthur">
+		<createTable tableName="QUESTAOOBJETIVA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_objetiva" foreignKeyName="fk_objetiva_questao" referencedColumnNames="ID" referencedTableName="QUESTAO"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="7" author="arthur">
+		<createTable tableName="ALTERNATIVA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_alternativa"/>
+			</column>
+			<column name="TEXTO" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CORRETA" type="${logico}">
+				<constraints nullable="false" />
+			</column>
+			<column name="ORDEM" type="${inteiromenor}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="QUESTAO_ID" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="fk_quest_alt" referencedColumnNames="ID" referencedTableName="QUESTAO"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="8" author="david">
+		<createTable tableName="UF">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_uf"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CODIGOIBGE" type="${inteiromenor}">
+				<constraints nullable="false" />
+			</column>
+			<column name="SIGLA" type="${descricaocurta}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="9" author="adriano">
+		<createTable tableName="ENDERECO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_endereco" />
+			</column>
+			<column name="Cidade" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Uf" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Pais" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Logradouro" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Bairro" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Cep" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+                        <column name="Numero" type="${descricaolonga}">
+				<constraints nullable="false" unique="false" />
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="10" author="david">
+		<createTable tableName="BAIRRO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_bairro"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="TIPO" type="${descricaocurta}">
+				<constraints nullable="false"/>
+                        </column>
+		</createTable>
+	</changeSet>
+        <changeSet id="11" author="david">
+		<createTable tableName="LOGRADOURO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_logradouro"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="TIPO" type="${descricaocurta}">
+				<constraints nullable="false"/>
+                        </column>
+		</createTable>
+	</changeSet>
+        <changeSet id="12" author="david">
+		<createTable tableName="FAIXADENUMERO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_faixadenumero"/>
+			</column>
+			<column name="CEP" type="${descricaocurta}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="NUMEROINICIAL" type="${inteiromenor}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="NUMEROFINAL" type="${inteiromenor}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="BAIRRO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="bairro_fk" referencedColumnNames="ID" referencedTableName="BAIRRO"/>
+			</column>
+                        <column name="LOGRADOURO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="logradouro_fk" referencedColumnNames="ID" referencedTableName="LOGRADOURO"/>
+			</column>
+		</createTable>
+	</changeSet>
+          <changeSet id="13" author="david">
+		<createTable tableName="TELEFONE">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_telefone"/>
+			</column>
+			<column name="NUMERO" type="${inteiromenor}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="TIPO" type="${descricaocurta}">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+       <changeSet id="14" author="lucas">
+		<createTable tableName="PESSOA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_pessoa"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="EMAIL" type="${descricaocurta}">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="15" author="david">
+		<createTable tableName="PESSOATELEFONE">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_pessoatelefone"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="TELEFONE_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="telefone_fk" referencedColumnNames="ID" referencedTableName="TELEFONE"/>
+			</column>
+                        <column name="PESSOA_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="pessoa_fk" referencedColumnNames="ID" referencedTableName="PESSOA"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="16" author="lucas">
+		<createTable tableName="FISICA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_fisica"/>
+			</column>
+			<column name="CPF" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="RG" type="${descricaocurta}">
+				<constraints nullable="true" />
+			</column>
+			<column name="DATANASCIMENTO" type="${datatempo}">
+				<constraints nullable="true"/>
+			</column>
+			<column name="SEXO" type="${descricaocurta}">
+				<constraints nullable="true" />
+			</column>
+                        <column name="PESSOA_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="pessoa_fk" referencedColumnNames="ID" referencedTableName="PESSOA"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="17" author="lucas">
+		<createTable tableName="JURIDICA">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_juridica"/>
+			</column>
+			<column name="CNPJ" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="DATAFUNDACAO" type="${datatempo}">
+				<constraints nullable="true" />
+			</column>
+                        <column name="PESSOA_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="pessoa_fk" referencedColumnNames="ID" referencedTableName="PESSOA"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="18" author="grivaldo">
+		<createTable tableName="PAIS">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_pais"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CODIGOIBGE" type="${inteiromenor}">
+				<constraints nullable="false" />
+			</column>
+			<column name="SIGLA" type="${descricaocurta}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="19" author="david">
+		<createTable tableName="CIDADE">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_cidade"/>
+			</column>
+			<column name="NOME" type="${descricaolonga}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CODIGOIBGE" type="${inteiromenor}">
+				<constraints nullable="false" />
+			</column>
+			<column name="SIGLA" type="${descricaocurta}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="20" author="david">
+		<createTable tableName="DISTRITO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_distrito"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+			<column name="SEDE_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="sede_fk" referencedColumnNames="ID" referencedTableName="CIDADE"/>
+			</column>
+                        <column name="DISTRITO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="distrito_fk" referencedColumnNames="ID" referencedTableName="CIDADE"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="21" author="david">
+		<createTable tableName="ITEMDEACESSO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_item"/>
+			</column>
+			<column name="DESCRICAO" type="${descricaolonga}">
+				<constraints nullable="false"/>
+                        </column>
+		</createTable>
+	</changeSet>
+        <changeSet id="22" author="david">
+		<createTable tableName="PERFILDEACESSO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_perfil"/>
+			</column>
+			<column name="DESCRICAO" type="${descricaolonga}">
+				<constraints nullable="false"/>
+                        </column>
+		</createTable>
+	</changeSet>
+        <changeSet id="23" author="david">
+		<createTable tableName="ITEMDEACESSOUSUARIO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_itemdeacessousuario"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+			<column name="ITEM_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="item_fk" referencedColumnNames="ID" referencedTableName="ITEMDEACESSO"/>
+			</column>
+                        <column name="USUARIO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="usuario_fk" referencedColumnNames="ID" referencedTableName="USUARIO"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="24" author="david">
+		<createTable tableName="ITEMPERFILDEACESSO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_itemperfildeacesso"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+			<column name="ITEM_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="item_fk" referencedColumnNames="ID" referencedTableName="ITEMDEACESSO"/>
+			</column>
+                        <column name="PERFIL_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="perfil_fk" referencedColumnNames="ID" referencedTableName="PERFILDEACESSO"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="25" author="david">
+		<createTable tableName="USUARIOPERFILDEACESSO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_usuarioperfildeacesso"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+			<column name="USUARIO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="usuario_fk" referencedColumnNames="ID" referencedTableName="USUARIO"/>
+			</column>
+                        <column name="PERFIL_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="perfil_fk" referencedColumnNames="ID" referencedTableName="PERFILDEACESSO"/>
+			</column>
+		</createTable>
+	</changeSet>
+        <changeSet id="26" author="david">
+		<createTable tableName="PESSOAENDERECO">
+			<column name="ID" type="${inteiro}">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_pessoaendereco"/>
+			</column>
+			<column name="INICIOVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+                        <column name="FIMVIGENCIA" type="${data}">
+				<constraints nullable="false"/>
+                        </column>
+			<column name="PESSOA_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="pessoa_fk" referencedColumnNames="ID" referencedTableName="PESSOA"/>
+			</column>
+                        <column name="ENDERECO_FK" type="${inteiro}">
+				<constraints nullable="false" foreignKeyName="endereco_fk" referencedColumnNames="ID" referencedTableName="ENDERECO"/>
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog> 

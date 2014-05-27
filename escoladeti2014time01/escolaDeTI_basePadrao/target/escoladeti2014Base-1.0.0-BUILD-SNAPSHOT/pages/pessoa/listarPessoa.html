@@ -1,0 +1,76 @@
+<div class="row" ng-controller="PessoaController" ng-init="init()">
+    <div class="table-responsive">
+        <table class="table table-hover" id="tableList">
+            <br>
+            <div>
+                <button class="btn btn-primary pull-right" ng-click="incluir()" > Nova Pessoa </button>
+            </div>
+            <br><br><br>
+            
+            <br>
+
+            <tr>
+                <th class="col-md-1">Pessoa</th>
+                <th class="col-md-1">Email</th>
+                <th class="col-md-1">CPF</th>
+                <th class="col-md-1">RG</th>
+                <th class="col-md-1">Data de Nascimento</th>
+                <th class="col-md-1 text-right"></th>
+            </tr>
+
+            <tbody ng-repeat="pessoa in page.list">
+                <tr>
+                    <td>{{pessoa.nome}}</td>
+                    <td>{{pessoa.email}}</td>
+                    <td>{{pessoa.cpf}}</td>
+                    <td>{{pessoa.rg}}</td>
+                    <td>{{pessoa.dataNascimento}}</td>
+                    <td class="text-right">
+                        <a href="#/cadastros/pessoa/editar/{{pessoa.id}}" class="btn btn-link btn-success" title="Editar">
+                            <span class="glyphicon glyphicon-pencil"> </span>
+                        </a>
+                        <button type="button" class="btn btn-link btn-danger" title="Excluir" ng:click="remover($index)">
+                            <span class="glyphicon glyphicon-trash"> </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <tfoot align="center">
+                
+                <tr>
+                <th colspan="6">
+            <ul class="pagination">
+                <li class="{{page.pageNumber == 1 ? 'disabled' : ''}}">
+                    <a ng-click="loadPessoas(1)">
+                        <span class="glyphicon glyphicon-fast-backward"/></span>
+                    </a>
+                </li>
+                <li class="{{page.pageNumber == 1 ? 'disabled' : ''}}">
+                    <a ng-click="loadPessoas(page.pageNumber - 1)">
+                        <span class="glyphicon glyphicon-step-backward"/></span>
+                    </a>
+                </li>
+
+                <li ng-repeat="numeroPagina in page.pagesAround" class="{{numeroPagina == page.pageNumber ? 'active' : ''}}">
+                    <a ng-click="loadPessoas(numeroPagina)">{{numeroPagina}}</a>
+                </li>
+
+                <li class="{{page.pageNumber == page.pageCount ? 'disabled' : ''}}">
+                    <a ng-click="loadPessoas(page.pageNumber + 1)">
+                        <span class="glyphicon glyphicon-step-forward"/></span>
+                    </a>
+                </li>
+                <li class="{{page.pageNumber == page.pageCount ? 'disabled' : ''}}">
+                    <a ng-click="loadPessoas(page.pageCount)">
+                        <span class="glyphicon glyphicon-fast-forward"> </span>
+                    </a>
+                </li>
+            </ul>
+            </th>
+            </tr>
+                
+            </tfoot>
+        </table>
+    </div>
+</div>

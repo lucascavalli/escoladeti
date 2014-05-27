@@ -1,0 +1,57 @@
+<div ng-controller="PessoaController" ng-init="initEditarPessoa()">
+    <div class="container">
+        <form name="pessoaform">
+            <br>
+            <br>
+            
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="idPessoa"> Nome </label>
+                    <input id="nome" type="text" class="form-control" ng-model="pessoaAtual.login" required name="nome" />
+                    <span class="help-inline text-error" ng-show="form.pessoa.$dirty && form.pessoa.$invalid">Campo obrigatório</span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="idPessoa">Email</label>
+                    <input name="email" type="text" class="form-control" ng-model="pessoaAtual.email" id="email" required />
+                    <span class="help-inline text-error" ng-show="form.email.$dirty && form.email.$invalid">Campo obrigatório</span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="idPessoa">CPF</label>
+                    <input name="cpf" type="text" class="form-control" ng-model="pessoaAtual.cpf" id="cpf" required />
+                    <span class="help-inline text-error" ng-show="form.cpf.$dirty && form.cpf.$invalid">Campo obrigatório</span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="idPessoa">RG</label>
+                    <input name="rg" type="text" class="form-control" ng-model="pessoaAtual.rg" id="rg" required />
+                    <span class="help-inline text-error" ng-show="form.rg.$dirty && form.rg.$invalid">Campo obrigatório</span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="idPessoa">Data de Nascimento</label>
+                    <input name="dataNascimento" type="dateTime" class="form-control" ng-model="pessoaAtual.dataNascimento" id="dataNascimento" required />
+                    <span class="help-inline text-error" ng-show="form.dataNascimento.$dirty && form.dataNascimento.$invalid">Campo obrigatório</span>
+                </div>
+                
+                <br>
+                <br>
+                <br>
+
+                <div class="row pull-right">
+                    <div class="form-group col-lg-12 col-sm-12">
+                        <button class="btn btn-success" ng-click="salvar()">
+                            <i class="glyphicon glyphicon-ok"></i> Salvar
+                        </button>
+                        <a href="#/cadastros/pessoa/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                    </div>
+                </div>   
+            </div>
+
+
+            <br>
+            <div>
+                <footer>
+                    <p>© Escola de TI 2014 - Time 01</p>
+                </footer>
+            </div>
+        </form>
+    </div>
+</div>

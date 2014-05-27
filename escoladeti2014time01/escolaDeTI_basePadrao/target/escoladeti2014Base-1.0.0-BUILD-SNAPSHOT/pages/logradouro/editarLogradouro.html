@@ -1,0 +1,39 @@
+<div ng-controller="LogradouroController" ng-init="initEditarLogradouro()">
+    <form name="logradouroform">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="idLogradouro">Nome:</label>
+                <input name="desc" type="text" class="form-control" placeholder="Ex: Pedro Louco" ng-model="logradouroAtual.nome" ng-minlength="3" ng-maxlength="255" ng-required="true"/>
+                <span class="error" ng-show="logradouroform.desc.$error.minlength">
+                  Muito pequeno!</span>
+                <span class="error" ng-show="logradouroform.desc.$error.maxlength">
+                  Muito grande!</span>
+                <span class="error" ng-show="logradouroform.desc.$error.required">
+                  Campo Obrigatório!</span>
+                <br/>
+                <label for="idLogradouro">Tipo:</label>
+                <select name="tipo" ng-model="logradouroAtual.tipo" class="form-control" ng-required="true">
+                    
+                    <option value="AEROPORTO">Aeroporto</option>
+                    <option value="ALAMEDA">Alameda</option>
+                    <option value="AVENIDA">Avenida</option>
+                    <option value="RUA">Rua</option>
+                    <option value="ESTRADA">Estrada</option>
+                    <option value="RODOVIA">Rodovia</option>
+                    <option value="OUTROS">Outros</option>
+                    
+                </select>
+                <span class="error" ng-show="logradouroform.tipo.$error.required">
+                  Selecione um tipo!</span>
+            </div>
+            <div class="row pull-right">
+                <div class="form-group col-lg-12 col-sm-12">
+                    <button class="btn btn-success" ng-click="salvar()" ng-disabled="logradouroform.desc.$invalid || logradouroform.tipo.$invalid">
+                        <i class="glyphicon glyphicon-ok"></i> Salvar
+                    </button>
+                    <a href="#/cadastros/logradouro/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

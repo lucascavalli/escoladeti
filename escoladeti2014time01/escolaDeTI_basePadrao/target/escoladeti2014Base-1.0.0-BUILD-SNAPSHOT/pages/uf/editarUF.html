@@ -1,0 +1,19 @@
+<div ng-controller="UfController" ng-init="initEditarUF">
+    <form>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="idUFNome">Nome</label>
+                <input type="text" class="form-control" placeholder="Nome da UF" ng-model="ufAtual.nome"/>
+                
+                <label for="idCodigoIBGE">Ibge</label>
+                <input type="text" class="form-control" placeholder="Código IBGE" ng-model="ufAtual.codigoIbge"/>
+            </div>
+            <div class="row pull-right">
+                <div class="form-group col-lg-12 col-sm-12">
+                    <button class="btn btn-success" ng-click="salvar()"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
+                    <a href="#/cadastros/uf/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
